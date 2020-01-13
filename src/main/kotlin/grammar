@@ -1,0 +1,29 @@
+C++ functions with boolean arguments, returns 0, can printf strings, can have if/else
+
+functtion: header (expression)* return
+
+header: 'int' string '(' arguments ')' '{'
+
+return: 'return 0' '}'
+
+if-expression: if-condition expression (else-condition expression*?)*?
+
+expression: '{' expression*? '}' | printf '(' string ')' ';' | if-expression
+
+if-condition: if '(' logical-expression ')'
+
+else-condition: 'else'
+
+logical-expression: a o'
+
+o': '||' logical-expression | \eps
+
+a: s a'
+
+a': '&&' logical-expression | \eps
+
+s: var || '!' var || 'true' || 'false'
+
+var: [a-z]([a-zA-Z0-9])*
+
+
