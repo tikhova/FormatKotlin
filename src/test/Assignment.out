@@ -1,0 +1,8 @@
+fun assignments() {
+    var a = 1
+    a += 5 + 3
+    val b = a
+    a = "Hello"
+    var c: Boolean = a(b)
+    val truth = true
+}

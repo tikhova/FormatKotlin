@@ -1,0 +1,11 @@
+fun ifExpression(a: Boolean, b: Boolean, abc: Boolean) {
+    if (true) {
+        if (a || b && abc) {
+            print("if")
+        } else {
+            print("else")
+        }
+    } else {
+        callSomeFunction(a, abc, c, false, 3 + a())
+    }
+}

@@ -1,3 +1,0 @@
-fun helloWorld() {
-    print("Hello, world!")
-}

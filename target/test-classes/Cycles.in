@@ -1,8 +1,0 @@
-fun cycles (a: String, akwafina: Int) {
-
-    for ( a in b )
-    {
-    print(a)
-    }
-
-}

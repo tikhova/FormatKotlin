@@ -38,6 +38,8 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
         printString(_space)
     }
 
+    // FUNCTION
+
     override fun visitFunc(ctx: SimpleFunctionParser.FuncContext): Void? {
         visitHeader(ctx.header())
         visitExprsBlock(ctx.exprsBlock())
@@ -64,11 +66,11 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
 
     override fun visitArgs(ctx: SimpleFunctionParser.ArgsContext): Void? {
         var length = _currentLength
+
         for (child in ctx.children) {
-            if (child is SimpleFunctionParser.ArgumentContext) {
-                length += child.NAME().text.length
-            } else if (child is SimpleFunctionParser.ArgumentWithCommaContext) {
-                length += child.argument().NAME().text.length + 2
+            when (child) {
+                is SimpleFunctionParser.ArgumentContext -> length += getString(child).length
+                is SimpleFunctionParser.ArgumentWithCommaContext -> length += getString(child).length
             }
         }
 
@@ -81,10 +83,9 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
         for (child in ctx.children) {
             var str = ""
 
-            if (child is SimpleFunctionParser.ArgumentContext) {
-                str = child.NAME().text
-            } else if (child is SimpleFunctionParser.ArgumentWithCommaContext) {
-                str = child.argument().NAME().text + child.COMMA().text
+            when (child) {
+                is SimpleFunctionParser.ArgumentContext -> str = getString(child)
+                is SimpleFunctionParser.ArgumentWithCommaContext -> str = getString(child)
             }
 
             if (newLineList) {
@@ -121,15 +122,15 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
         _indentationDepth++
         visitExprs(ctx.exprs())
         _indentationDepth--
+        printIndentation()
         visitTerminal(ctx.CURLY_RBRACKET())
-        printNewLine()
 
         return null
     }
 
     override fun visitExprs(ctx: SimpleFunctionParser.ExprsContext?): Void? {
         if (ctx != null) {
-            for (child in ctx.children) {
+            for (child in ctx.expr()) {
                 visitExpr((child as SimpleFunctionParser.ExprContext))
                 printNewLine()
             }
@@ -140,50 +141,34 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
 
     override fun visitExpr(ctx: SimpleFunctionParser.ExprContext): Void? {
         printIndentation()
-        when (ctx.getChild(0)) {
-            is SimpleFunctionParser.ReturnStatementContext -> {
-                visitReturnStatement(ctx.getChild(0) as SimpleFunctionParser.ReturnStatementContext)
-            }
-            is SimpleFunctionParser.IfExpressionContext -> {
-                visitIfExpression(ctx.getChild(0) as SimpleFunctionParser.IfExpressionContext)
-            }
-            is SimpleFunctionParser.AssignmentContext -> {
-                visitAssignment(ctx.getChild(0) as SimpleFunctionParser.AssignmentContext)
-            }
-            is SimpleFunctionParser.FunctionCallContext -> {
-                visitFunctionCall(ctx.getChild(0) as SimpleFunctionParser.FunctionCallContext)
-            }
-            is SimpleFunctionParser.PrintExpressionContext -> {
-                visitPrintExpression(ctx.getChild(0) as SimpleFunctionParser.PrintExpressionContext)
-            }
-            is SimpleFunctionParser.CycleContext -> {
-                visitCycle(ctx.getChild(0) as SimpleFunctionParser.CycleContext)
-            }
-        }
+        super.visitExpr(ctx)
 
         return null
     }
+
+    // RETURN
 
     override fun visitReturnStatement(ctx: SimpleFunctionParser.ReturnStatementContext): Void? {
         printString(ctx.RETURN().text)
         printSpace()
         visitValue(ctx.value())
-        printNewLine()
 
         return null
     }
 
+    // IF EXPRESSION
+
     override fun visitIfExpression(ctx: SimpleFunctionParser.IfExpressionContext): Void? {
         visitIfCond(ctx.ifCond())
-        print(_space)
-        visitExprsBlock(ctx.exprsBlock()[0])
+        printSpace()
+        visitExprsBlock(ctx.exprsBlock(0))
 
         if (ctx.ELSE() != null) {
+            printSpace()
             visitTerminal(ctx.ELSE())
-            visitExprsBlock(ctx.exprsBlock()[1])
+            printSpace()
+            visitExprsBlock(ctx.exprsBlock(1))
         }
-
-        printNewLine()
 
         return null
     }
@@ -212,14 +197,14 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
             }
             else -> {
                 visitLogicAtom(ctx.logicAtom())
-                printString(_space)
+                printSpace()
                 visitTerminal(ctx.LOGICAL_OPERATOR())
 
                 if (_currentLength >= _maxLength) {
                     printNewLine()
                     printIndentation()
                 } else {
-                    printString(_space)
+                    printSpace()
                 }
 
                 visitLogicExpr(ctx.logicExpr())
@@ -229,98 +214,32 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
         return null
     }
 
+    // ASSIGNMENT
+
     override fun visitAssignment(ctx: SimpleFunctionParser.AssignmentContext): Void? {
         visitTerminal(ctx.NAME())
-
-        if (ctx.typeIndicator() != null) {
-            visitTypeIndicator(ctx.typeIndicator())
-        }
-
-        visitTerminal(ctx.EQUALITY())
-        visitAssignmentExpr(ctx.assignmentExpr())
+        printSpace()
+        visitAssignmentOperator(ctx.assignmentOperator())
+        printSpace()
+        visitAssignableVal(ctx.assignableVal())
 
         return null
     }
 
-    override fun visitAssignmentExpr(ctx: SimpleFunctionParser.AssignmentExprContext): Void? {
-        when (ctx.getChild(0)) {
-            is SimpleFunctionParser.FunctionCallContext -> {
-                visitFunctionCall(ctx.getChild(0) as SimpleFunctionParser.FunctionCallContext)
-            }
-            is SimpleFunctionParser.ValueContext -> {
-                visitValue(ctx.getChild(0) as SimpleFunctionParser.ValueContext)
-            }
-        }
-
-        return null
-    }
-
-    override fun visitFunctionCall(ctx: SimpleFunctionParser.FunctionCallContext): Void? {
+    override fun visitDefinition(ctx: SimpleFunctionParser.DefinitionContext): Void? {
+        visitTerminal(ctx.VARIABLE_TYPE())
+        printSpace()
         visitTerminal(ctx.NAME())
-        visitTerminal(ctx.LBRACKET())
-        visitVals(ctx.vals())
-        visitTerminal(ctx.RBRACKET())
+        visitTypeIndicator(ctx.typeIndicator())
+        printSpace()
+        visitTerminal(ctx.EQUAL())
+        printSpace()
+        visitAssignableVal(ctx.assignableVal())
 
         return null
     }
 
-    override fun visitVals(ctx: SimpleFunctionParser.ValsContext): Void? {
-        var length = _currentLength
-        for (child in ctx.children) {
-            if (child is SimpleFunctionParser.ValueContext) {
-                length += child.NAME().text.length
-            } else if (child is SimpleFunctionParser.ValueWithCommaContext) {
-                length += child.value().NAME().text.length + 2
-            }
-        }
-
-        val newLineList = length > _maxLength
-
-        if (newLineList) {
-            _indentationDepth++
-        }
-
-        for (child in ctx.children) {
-            var str = ""
-
-            if (child is SimpleFunctionParser.ValueContext) {
-                str = child.getChild(0).text
-            } else if (child is SimpleFunctionParser.ValueWithCommaContext) {
-                str = child.value().NAME().text + child.COMMA().text
-            }
-
-            if (newLineList) {
-                printLine(str)
-            } else {
-                if (child is SimpleFunctionParser.ValueWithCommaContext) {
-                    str += _space
-                }
-
-                printString(str)
-            }
-        }
-
-        if (newLineList) {
-            _indentationDepth--
-        }
-
-        return null
-    }
-
-    override fun visitValue(ctx: SimpleFunctionParser.ValueContext): Void? {
-        visitTerminal(ctx.getChild(0) as TerminalNode)
-
-        return null
-    }
-
-    override fun visitPrintExpression(ctx: SimpleFunctionParser.PrintExpressionContext): Void? {
-        visitTerminal(ctx.PRINT_FUN())
-        visitTerminal(ctx.LBRACKET())
-        visitValue(ctx.value())
-        visitTerminal(ctx.RBRACKET())
-
-        return null
-    }
+    // CYCLES
 
     override fun visitCycle(ctx: SimpleFunctionParser.CycleContext): Void? {
         when (ctx.getChild(0)) {
@@ -340,17 +259,16 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
 
     override fun visitForCycle(ctx: SimpleFunctionParser.ForCycleContext): Void? {
         visitTerminal(ctx.FOR())
-        printString(_space)
+        printSpace()
         visitTerminal(ctx.LBRACKET())
         visitTerminal(ctx.NAME(0))
-
-        if (ctx.typeIndicator() != null) {
-            visitTypeIndicator(ctx.typeIndicator()) // TODO
-        }
-
+        visitTypeIndicator(ctx.typeIndicator())
+        printSpace()
         visitTerminal(ctx.IN())
+        printSpace()
         visitTerminal(ctx.NAME(1))
         visitTerminal(ctx.RBRACKET())
+        printSpace()
         visitExprsBlock(ctx.exprsBlock())
 
         return null
@@ -373,10 +291,11 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
 
     override fun visitDoWhileCycle(ctx: SimpleFunctionParser.DoWhileCycleContext): Void? {
         visitTerminal(ctx.DO())
-        printString(_space)
+        printSpace()
         visitExprsBlock(ctx.exprsBlock())
+        printSpace()
         visitTerminal(ctx.WHILE())
-        printString(_space)
+        printSpace()
         visitTerminal(ctx.LBRACKET())
 
         if (ctx.logicExpr() != null) {
@@ -388,8 +307,45 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
         return null
     }
 
-    override fun visitTerminal(node: TerminalNode?): Void? {
-        printString(node?.text?: "")
+    // VALUES
+
+    override fun visitVals(ctx: SimpleFunctionParser.ValsContext): Void? {
+        for (child in ctx.valueWithComma()) {
+            visitValueWithComma(child)
+            printSpace()
+        }
+        visitAssignableVal(ctx.assignableVal())
+
         return null
     }
+
+    override fun visitCalculation(ctx: SimpleFunctionParser.CalculationContext): Void? {
+        if (ctx.children.size == 1 || ctx.LBRACKET() != null) {
+            super.visitCalculation(ctx)
+        } else {
+            visitValue(ctx.value())
+            printSpace()
+            visitTerminal(ctx.OPERATOR())
+            printSpace()
+            visitCalculation(ctx.calculation())
+        }
+
+        return null
+    }
+
+    override fun visitTerminal(node: TerminalNode?): Void? {
+        printString(node?.text ?: "")
+        return null
+    }
+
+    // GET STRING
+
+    private fun getString(ctx: SimpleFunctionParser.ArgumentContext): String =
+            ctx.NAME().text + getString(ctx.typeIndicator())
+
+    private fun getString(ctx: SimpleFunctionParser.ArgumentWithCommaContext): String =
+            getString(ctx.argument()) + ctx.COMMA().text
+
+    private fun getString(ctx: SimpleFunctionParser.TypeIndicatorContext): String =
+            ctx.COLON().text + _space + ctx.TYPE().text
 }

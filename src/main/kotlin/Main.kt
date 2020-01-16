@@ -16,7 +16,3 @@ fun main(args: Array<String>) {
     visitor.visitFunc(function)
     outputStreamWriter.close()
 }
-
-fun helloWorld() {
-    print("Hello, world!")
-}

@@ -64,11 +64,35 @@ public interface SimpleFunctionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr(SimpleFunctionParser.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#calculation}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#returnStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCalculation(SimpleFunctionParser.CalculationContext ctx);
+	T visitReturnStatement(SimpleFunctionParser.ReturnStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#ifExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfExpression(SimpleFunctionParser.IfExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#ifCond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfCond(SimpleFunctionParser.IfCondContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#logicExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicExpr(SimpleFunctionParser.LogicExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#logicAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicAtom(SimpleFunctionParser.LogicAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SimpleFunctionParser#assignment}.
 	 * @param ctx the parse tree
@@ -76,11 +100,17 @@ public interface SimpleFunctionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignment(SimpleFunctionParser.AssignmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#assignmentExpr}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#assignmentOperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignmentExpr(SimpleFunctionParser.AssignmentExprContext ctx);
+	T visitAssignmentOperator(SimpleFunctionParser.AssignmentOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#definition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefinition(SimpleFunctionParser.DefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SimpleFunctionParser#functionCall}.
 	 * @param ctx the parse tree
@@ -88,23 +118,11 @@ public interface SimpleFunctionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionCall(SimpleFunctionParser.FunctionCallContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#vals}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#printExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVals(SimpleFunctionParser.ValsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#valueWithComma}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValueWithComma(SimpleFunctionParser.ValueWithCommaContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#value}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValue(SimpleFunctionParser.ValueContext ctx);
+	T visitPrintExpression(SimpleFunctionParser.PrintExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SimpleFunctionParser#cycle}.
 	 * @param ctx the parse tree
@@ -130,39 +148,33 @@ public interface SimpleFunctionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDoWhileCycle(SimpleFunctionParser.DoWhileCycleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#returnStatement}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#vals}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturnStatement(SimpleFunctionParser.ReturnStatementContext ctx);
+	T visitVals(SimpleFunctionParser.ValsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#ifExpression}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#valueWithComma}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfExpression(SimpleFunctionParser.IfExpressionContext ctx);
+	T visitValueWithComma(SimpleFunctionParser.ValueWithCommaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#printExpression}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#assignableVal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrintExpression(SimpleFunctionParser.PrintExpressionContext ctx);
+	T visitAssignableVal(SimpleFunctionParser.AssignableValContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#ifCond}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#calculation}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfCond(SimpleFunctionParser.IfCondContext ctx);
+	T visitCalculation(SimpleFunctionParser.CalculationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#logicExpr}.
+	 * Visit a parse tree produced by {@link SimpleFunctionParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicExpr(SimpleFunctionParser.LogicExprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SimpleFunctionParser#logicAtom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogicAtom(SimpleFunctionParser.LogicAtomContext ctx);
+	T visitValue(SimpleFunctionParser.ValueContext ctx);
 }

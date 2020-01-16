@@ -4,38 +4,59 @@ func: header exprsBlock ;
 
 header: FUN NAME LBRACKET args? RBRACKET typeIndicator? ;
 
-typeIndicator: COLON TYPE;
+typeIndicator: COLON TYPE ;
 
-args: (argumentWithComma)* argument;
+args: argumentWithComma* argument;
 
 argument: NAME typeIndicator ;
 
 argumentWithComma: argument COMMA ;
 
-exprsBlock: CURLY_LBRACKET exprs CURLY_RBRACKET ;
+exprsBlock: CURLY_LBRACKET NEWLINE? exprs NEWLINE? CURLY_RBRACKET NEWLINE? ;
 
-exprs: expr* ;
+exprs: (expr NEWLINE)* expr ;
 
 expr: returnStatement |
       ifExpression |
       assignment |
+      definition |
       functionCall |
       printExpression |
       cycle ;
 
-calculation : value OPERATOR calculation ;
+// RETURN STATEMENT
 
-assignment: NAME typeIndicator? EQUALITY assignmentExpr ;
+returnStatement: RETURN value ;
 
-assignmentExpr: functionCall | value ;
+// IF EXPRESSION
 
-functionCall: NAME LBRACKET vals RBRACKET ;
+ifExpression: ifCond exprsBlock NEWLINE? (ELSE exprsBlock)? ;
 
-vals: valueWithComma* value ;
+ifCond: IF LBRACKET logicExpr RBRACKET ;
 
-valueWithComma: value COMMA ;
+logicExpr: logicAtom | logicAtom LOGICAL_OPERATOR logicExpr | LBRACKET logicExpr RBRACKET ;
 
-value: NAME | STR ;
+logicAtom: NAME | NOT logicExpr | LOGICAL_VALUE ;
+
+// ASSIGNMENT
+
+assignment: NAME assignmentOperator assignableVal ;
+
+assignmentOperator: EQUAL | '+=' | '-=' ;
+
+// DEFINITION
+
+definition : VARIABLE_TYPE NAME typeIndicator? EQUAL assignableVal ;
+
+// FUNCTION CALL
+
+functionCall: NAME LBRACKET vals? RBRACKET ;
+
+// PRINT EXPRESSION
+
+printExpression: PRINT_FUN LBRACKET value RBRACKET ;
+
+// CYCLES
 
 cycle: forCycle | whileCycle | doWhileCycle ;
 
@@ -43,19 +64,19 @@ forCycle: FOR LBRACKET NAME typeIndicator? IN NAME RBRACKET exprsBlock ;
 
 whileCycle: WHILE LBRACKET logicExpr? RBRACKET exprsBlock ;
 
-doWhileCycle: DO exprsBlock WHILE LBRACKET logicExpr? RBRACKET;
+doWhileCycle: DO exprsBlock WHILE LBRACKET logicExpr? RBRACKET ;
 
-returnStatement: RETURN value ;
+// VALUES
 
-ifExpression: ifCond exprsBlock (ELSE exprsBlock)? ;
+vals: valueWithComma* assignableVal ;
 
-printExpression: PRINT_FUN LBRACKET value RBRACKET;
+valueWithComma: assignableVal COMMA ;
 
-ifCond: IF LBRACKET logicExpr RBRACKET ;
+assignableVal: value | calculation ;
 
-logicExpr: logicAtom | logicAtom LOGICAL_OPERATOR logicExpr | LBRACKET logicExpr RBRACKET ;
+calculation : value | value OPERATOR calculation | LBRACKET calculation RBRACKET ;
 
-logicAtom: NAME | NOT NAME | LOGICAL_VALUE ;
+value: NAME | NUMBER | STR | functionCall | logicExpr ;
 
 // LEXER
 
@@ -73,11 +94,11 @@ CURLY_LBRACKET: '{' ;
 
 CURLY_RBRACKET: '}' ;
 
-EQUALITY: '=' ;
+EQUAL: '=' ;
 
 VARIABLE_TYPE: 'val' | 'var' ;
 
-LOGICAL_VALUE: 'true' | 'false' ;
+LOGICAL_VALUE: 'true' | 'false';
 
 LOGICAL_OPERATOR: '||' | '&&' ;
 
@@ -88,9 +109,9 @@ TYPE:
     'Short' |
     'Int' |
     'Long' |
-    'Float' |
-    'Double' |
-    'Char' ;
+    'Char' |
+    'String' |
+    'Boolean' ;
 
 FUN: 'fun' ;
 
@@ -110,10 +131,14 @@ PRINT_FUN: 'print' | 'println' ;
 
 RETURN: 'return' ;
 
-NAME: [a-z]([a-zA-Z0-9])* ;
+NAME: [a-z][a-zA-Z0-9]* ;
+
+NUMBER: '0' | [1-9][0-9]* ;
 
 STR: '"' (~["\\])* '"' ;
 
 EPS: /* epsilon */  ;
 
-WS : [ \t\r\n]+ -> skip ;
+WS : [ \t\r]+ -> skip ;
+
+NEWLINE : '\n'+;
