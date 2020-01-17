@@ -9,9 +9,13 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
     private var _currentLength = 0
     private val _maxLength = 80
 
+    private fun getIndentation(): String {
+        return _singleIndentation.repeat(_indentationDepth)
+    }
+
     private fun printIndentation() {
         _currentLength += _indentationDepth * _singleIndentation.length
-        outputStreamWriter.write(_singleIndentation.repeat(_indentationDepth))
+        outputStreamWriter.write(getIndentation())
     }
 
     private fun printNewLine() {
@@ -80,6 +84,8 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
             _indentationDepth++
         }
 
+        var firstArg = true
+
         for (child in ctx.children) {
             var str = ""
 
@@ -89,6 +95,11 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
             }
 
             if (newLineList) {
+                if (firstArg) {
+                    firstArg = false
+                    printNewLine()
+                }
+
                 printLine(str)
             } else {
                 if (child is SimpleFunctionParser.ArgumentWithCommaContext) {
@@ -334,9 +345,19 @@ class KotlinFunctionVisitor(private val outputStreamWriter: OutputStreamWriter) 
     }
 
     override fun visitTerminal(node: TerminalNode?): Void? {
-        printString(node?.text ?: "")
+        var str = node?.text
+
+        str = if (str?.startsWith("\"") == true) {
+            str.replace(Regex(pattern = "${_lineSeparator}+${_space}*"), "\" +${_lineSeparator}${getIndentation()}${_singleIndentation.repeat(2)}\"")
+        } else {
+            str?.replace(_lineSeparator, "")
+        }
+
+        printString(str ?: "")
+
         return null
     }
+
 
     // GET STRING
 

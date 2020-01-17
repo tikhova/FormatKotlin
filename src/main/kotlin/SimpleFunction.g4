@@ -1,16 +1,16 @@
 grammar SimpleFunction;
 
-func: header exprsBlock ;
+func: header NEWLINE? exprsBlock ;
 
-header: FUN NAME LBRACKET args? RBRACKET typeIndicator? ;
+header: FUN NEWLINE? NAME NEWLINE? LBRACKET NEWLINE? args? NEWLINE? RBRACKET NEWLINE? typeIndicator? ;
 
-typeIndicator: COLON TYPE ;
+typeIndicator: COLON NEWLINE? TYPE ;
 
 args: argumentWithComma* argument;
 
-argument: NAME typeIndicator ;
+argument: NAME NEWLINE? typeIndicator ;
 
-argumentWithComma: argument COMMA ;
+argumentWithComma: argument NEWLINE? COMMA NEWLINE?;
 
 exprsBlock: CURLY_LBRACKET NEWLINE? exprs NEWLINE? CURLY_RBRACKET NEWLINE? ;
 
@@ -30,51 +30,51 @@ returnStatement: RETURN value ;
 
 // IF EXPRESSION
 
-ifExpression: ifCond exprsBlock NEWLINE? (ELSE exprsBlock)? ;
+ifExpression: ifCond NEWLINE? exprsBlock NEWLINE? (ELSE NEWLINE? exprsBlock)? ;
 
-ifCond: IF LBRACKET logicExpr RBRACKET ;
+ifCond: IF NEWLINE? LBRACKET NEWLINE? logicExpr NEWLINE? RBRACKET ;
 
-logicExpr: logicAtom | logicAtom LOGICAL_OPERATOR logicExpr | LBRACKET logicExpr RBRACKET ;
+logicExpr: logicAtom | logicAtom NEWLINE? LOGICAL_OPERATOR NEWLINE? logicExpr | LBRACKET NEWLINE? logicExpr NEWLINE? RBRACKET ;
 
-logicAtom: NAME | NOT logicExpr | LOGICAL_VALUE ;
+logicAtom: NAME | NOT NEWLINE? logicExpr | LOGICAL_VALUE ;
 
 // ASSIGNMENT
 
-assignment: NAME assignmentOperator assignableVal ;
+assignment: NAME NEWLINE? assignmentOperator NEWLINE? assignableVal ;
 
 assignmentOperator: EQUAL | '+=' | '-=' ;
 
 // DEFINITION
 
-definition : VARIABLE_TYPE NAME typeIndicator? EQUAL assignableVal ;
+definition : VARIABLE_TYPE NEWLINE? NAME NEWLINE? typeIndicator? NEWLINE? EQUAL NEWLINE? assignableVal ;
 
 // FUNCTION CALL
 
-functionCall: NAME LBRACKET vals? RBRACKET ;
+functionCall: NAME LBRACKET NEWLINE? vals? NEWLINE? RBRACKET ;
 
 // PRINT EXPRESSION
 
-printExpression: PRINT_FUN LBRACKET value RBRACKET ;
+printExpression: PRINT_FUN LBRACKET NEWLINE? value NEWLINE? RBRACKET ;
 
 // CYCLES
 
 cycle: forCycle | whileCycle | doWhileCycle ;
 
-forCycle: FOR LBRACKET NAME typeIndicator? IN NAME RBRACKET exprsBlock ;
+forCycle: FOR NEWLINE? LBRACKET NEWLINE? NAME NEWLINE? typeIndicator? NEWLINE? IN NEWLINE? NAME NEWLINE? RBRACKET NEWLINE? exprsBlock ;
 
-whileCycle: WHILE LBRACKET logicExpr? RBRACKET exprsBlock ;
+whileCycle: WHILE NEWLINE? LBRACKET NEWLINE? logicExpr? NEWLINE? RBRACKET NEWLINE? exprsBlock ;
 
-doWhileCycle: DO exprsBlock WHILE LBRACKET logicExpr? RBRACKET ;
+doWhileCycle: DO NEWLINE? exprsBlock NEWLINE? WHILE NEWLINE? LBRACKET NEWLINE? logicExpr? NEWLINE? RBRACKET ;
 
 // VALUES
 
 vals: valueWithComma* assignableVal ;
 
-valueWithComma: assignableVal COMMA ;
+valueWithComma: assignableVal NEWLINE? COMMA NEWLINE?;
 
 assignableVal: value | calculation ;
 
-calculation : value | value OPERATOR calculation | LBRACKET calculation RBRACKET ;
+calculation : value | value NEWLINE? OPERATOR NEWLINE? calculation | LBRACKET NEWLINE? calculation NEWLINE? RBRACKET ;
 
 value: NAME | NUMBER | STR | functionCall | logicExpr ;
 

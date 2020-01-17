@@ -2,57 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a8654d0-db12-42f7-a198-290b4e51579d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/Assignment.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/IfExpression.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/Arguments.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/KotlinFunctionVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KotlinFunctionVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunction.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SimpleFunctionVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Cycles.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Cycles.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/KotlinFunctionVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/KotlinFunctionVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgumentContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgumentContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgumentWithCommaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ArgumentWithCommaContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$AssignmentContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$AssignmentContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$AssignmentExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$CalculationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$CalculationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$CycleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$CycleContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$DoWhileCycleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$DoWhileCycleContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprsBlockContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprsBlockContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ExprsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ForCycleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ForCycleContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$FuncContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$FuncContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$FunctionCallContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$FunctionCallContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$HeaderContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$HeaderContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$IfCondContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$IfCondContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$IfExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$IfExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$LogicAtomContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$LogicAtomContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$LogicExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$LogicExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$PrintExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$PrintExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ReturnStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ReturnStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$TypeIndicatorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$TypeIndicatorContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValueContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValueWithCommaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$ValueWithCommaContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$WhileCycleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser$WhileCycleContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SimpleFunctionVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SimpleFunctionVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Cycles.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/HelloWorld.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/HelloWorld.out" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +118,9 @@
       <workItem from="1578921341065" duration="4222000" />
       <workItem from="1578997386763" duration="6253000" />
       <workItem from="1579025423606" duration="9943000" />
-      <workItem from="1579097694195" duration="14862000" />
+      <workItem from="1579097694195" duration="15114000" />
+      <workItem from="1579203626220" duration="1166000" />
+      <workItem from="1579255691962" duration="3643000" />
     </task>
     <servers />
   </component>
@@ -192,38 +152,38 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="743" y="279" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1578831658341" />
-    <state width="1874" height="273" key="GridCell.Tab.0.bottom" timestamp="1579171729598">
+    <state width="1874" height="273" key="GridCell.Tab.0.bottom" timestamp="1579260362626">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579171729598" />
-    <state width="1874" height="273" key="GridCell.Tab.0.center" timestamp="1579171729597">
+    <state width="1874" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579260362626" />
+    <state width="1874" height="273" key="GridCell.Tab.0.center" timestamp="1579260362625">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="273" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579171729597" />
-    <state width="1874" height="273" key="GridCell.Tab.0.left" timestamp="1579171729597">
+    <state width="1874" height="273" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579260362625" />
+    <state width="1874" height="273" key="GridCell.Tab.0.left" timestamp="1579260362625">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="273" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579171729597" />
-    <state width="1874" height="273" key="GridCell.Tab.0.right" timestamp="1579171729598">
+    <state width="1874" height="273" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579260362625" />
+    <state width="1874" height="273" key="GridCell.Tab.0.right" timestamp="1579260362626">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="273" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579171729598" />
-    <state width="1874" height="340" key="GridCell.Tab.1.bottom" timestamp="1579169995381">
+    <state width="1874" height="273" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579260362626" />
+    <state width="1874" height="340" key="GridCell.Tab.1.bottom" timestamp="1579171983340">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="340" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579169995381" />
-    <state width="1874" height="340" key="GridCell.Tab.1.center" timestamp="1579169995381">
+    <state width="1874" height="340" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579171983340" />
+    <state width="1874" height="340" key="GridCell.Tab.1.center" timestamp="1579171983339">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="340" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579169995381" />
-    <state width="1874" height="340" key="GridCell.Tab.1.left" timestamp="1579169995380">
+    <state width="1874" height="340" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579171983339" />
+    <state width="1874" height="340" key="GridCell.Tab.1.left" timestamp="1579171983338">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="340" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579169995380" />
-    <state width="1874" height="340" key="GridCell.Tab.1.right" timestamp="1579169995381">
+    <state width="1874" height="340" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579171983338" />
+    <state width="1874" height="340" key="GridCell.Tab.1.right" timestamp="1579171983340">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1874" height="340" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579169995381" />
+    <state width="1874" height="340" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579171983340" />
     <state x="122" y="200" width="1728" height="844" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1579109745709">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>

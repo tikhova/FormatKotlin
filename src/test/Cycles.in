@@ -1,12 +1,43 @@
-fun cycles (b : String, c: Boolean) : Int {
+fun cycles
+            (b
+:
+                                        String
+                                            ,
+                                                    c
+                      :                                  Boolean
+                      )
+                      :
+                 Int {
 
     for ( a in b )
     {
     print(a)
     }
 
-    while ( true && false) {
+    while (
+
+    true
+
+
+
+
+                                    &&
+
+
+
+
+
+
+
+
+
+
+
+                                    false) {
             return 0
+
+
+
     }
 
     do { print("Hello, doWhile") }

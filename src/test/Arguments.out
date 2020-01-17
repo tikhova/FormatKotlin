@@ -1,0 +1,20 @@
+fun arguments(
+    a: Boolean,
+    b: String,
+    c: Int,
+    d: Long,
+    e: Byte,
+    f: Short,
+    g: Char,
+    h: String,
+    i: Int,
+    j: Int,
+    k: Boolean
+) {
+    var a = 1
+    a += 5 + 3
+    val b = a
+    a = "Hello"
+    var c: Boolean = a(b)
+    val truth = true
+}
